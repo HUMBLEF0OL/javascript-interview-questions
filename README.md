@@ -1,10 +1,10 @@
 # JavaScript Interview Questions & Answers
 
-> Click :star:if you like the project and follow [@SudheerJonna](https://twitter.com/SudheerJonna) for more updates. Coding questions available [here](#coding-exercise). PDF and Epub versions available at [actions tab](https://github.com/sudheerj/JavaScript-Interview-Questions/actions).
+<!-- > Click :star:if you like the project and follow [@SudheerJonna](https://twitter.com/SudheerJonna) for more updates. Coding questions available [here](#coding-exercise). PDF and Epub versions available at [actions tab](https://github.com/sudheerj/JavaScript-Interview-Questions/actions). -->
 
 ---
 
-<p align="center">
+<!-- <p align="center">
   <a href=https://zerotomastery.io/?utm_source=github&utm_medium=sponsor&utm_campaign=javascript-interview-questions>
     <img src=https://process.fs.teachablecdn.com/ADNupMnWyR7kCWRvm76Laz/resize=height:70/https://www.filepicker.io/api/file/AKYtjj5SSGyJuyZrkAB2 alt="ZTM Logo" width="100" height="50">
   </a>
@@ -15,7 +15,7 @@
     <li>Take this <a href=https://links.zerotomastery.io/ajs_sudheer>Advanced JavaScript Course</a> to learn advanced JS concepts and become a top JS developer</li>
     </ol>
   </p>
-</p>
+</p> -->
 
 ---
 
@@ -474,25 +474,43 @@
 | 449 | [What is Functon Composition?](#what-is-function-composition) |
 | 450 | [How to use await outside of async function prior to ES2022?](#how-to-use-await-outside-of-async-function-prior-to-es2022) |
 
+
 1. ### What are the possible ways to create objects in JavaScript
 
    There are many ways to create objects in javascript as below
 
-   1. **Object constructor:**
+   1. **Object's create method:**
 
-      The simplest way to create an empty object is using the Object constructor. Currently this approach is not recommended.
+      The Object.create() static method(_a method defined as a member of an object but is accessible directly from an API object's constructor, rather than from an object instance created via the constructor_) creates a new object, using an existing object as the prototype(properties) of the newly created object.
+
+      ```javascript
+      
+      const person = {
+        isHuman: false,
+        printIntroduction: function() {
+          console.log(`My name is ${this.name}. Am I human? ${this.isHuman}`);
+        }
+      };
+
+      const me = Object.create(person);
+
+      me.name = 'Matthew'; // "name" is a property set on "me", but not on "person"
+      me.isHuman = true; // Inherited properties can be overwritten
+
+      me.printIntroduction();
+      // Expected output: "My name is Matthew. Am I human? true"
+
+      ```
+
+   2. **Object constructor:**
+
+      The simplest way to create an empty object is using the Object constructor. **_Currently this approach is not recommended._**
 
       ```javascript
       var object = new Object();
       ```
 
-   2. **Object's create method:**
 
-      The create method of Object creates a new object by passing the prototype object as a parameter
-
-      ```javascript
-      var object = Object.create(null);
-      ```
 
    3. **Object literal syntax:**
 
@@ -500,7 +518,7 @@
 
       ```javascript
       var object = {
-           name: "Sudheer",
+           name: "Jon Doe",
            age: 34
       };
 
@@ -518,7 +536,7 @@
         this.name = name;
         this.age = 21;
       }
-      var object = new Person("Sudheer");
+      var object = new Person("Jon Doe");
       ```
 
    5. **Function constructor with prototype:**
@@ -527,7 +545,7 @@
 
       ```javascript
       function Person() {}
-      Person.prototype.name = "Sudheer";
+      Person.prototype.name = "Jon Doe";
       var object = new Person();
       ```
 
@@ -563,16 +581,19 @@
         }
       }
 
-      var object = new Person("Sudheer");
+      var object = new Person("Jon Doe");
       ```
 
    7. **Singleton pattern:**
 
+      Singleton is a design pattern that tells us that we can create only one instance of a class and that instance can be accessed globally. This is one of the basic types of design pattern. It makes sure that the class acts as a single source of entry for all the consumer components that want to access this state.
+      
       A Singleton is an object which can only be instantiated one time. Repeated calls to its constructor return the same instance and this way one can ensure that they don't accidentally create multiple instances.
+      
 
       ```javascript
       var object = new (function () {
-        this.name = "Sudheer";
+        this.name = "Jon Doe";
       })();
       ```
 
@@ -580,7 +601,7 @@
 
 2. ### What is a prototype chain
 
-   **Prototype chaining** is used to build new types of objects based on existing ones. It is similar to inheritance in a class based language.
+   **Prototype chaining** is used to build new types of objects based on existing ones. It is similar to *inheritance* in a class based language.
 
    The prototype on object instance is available through **Object.getPrototypeOf(object)** or **\_\_proto__** property whereas prototype on constructors function is available through **Object.prototype**.
 
@@ -793,10 +814,11 @@
     Higher-order function is a function that accepts another function as an argument or returns a function as a return value or both.
 
     ```javascript
-    const firstOrderFunc = () =>
-      console.log("Hello, I am a First order function");
-    const higherOrder = (ReturnFirstOrderFunc) => ReturnFirstOrderFunc();
-    higherOrder(firstOrderFunc);
+    const numbers = [1, 2, 3, 4, 5];
+    // filter accepts a function as an argument and return  the new array
+    const oddArray = numbers.filter((number) => number % 2 !== 0);
+    console.log(oddArray);
+    // output will be -> [1,3,5]
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
@@ -911,6 +933,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
+
 20. ### How do you redeclare variables in switch block without an error
 
     If you try to redeclare variables in a `switch block` then it will cause errors because there is only one block. For example, the below code block throws a syntax error as below,
@@ -985,7 +1008,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-23. ### How do you decode or encode a URL in JavaScript?
+22. ### How do you decode or encode a URL in JavaScript?
 
     `encodeURI()` function is used to encode an URL. This function requires a URL string as a parameter and return that encoded string.
     `decodeURI()` function is used to decode an URL. This function requires an encoded URL string as parameter and return that decoded string.
@@ -1000,7 +1023,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-24. ### What is memoization
+23. ### What is memoization
 
     Memoization is a programming technique which attempts to increase a function’s performance by caching its previously computed results. Each time a memoized function is called, its parameters are used to index the cache. If the data is present, then it can be returned, without executing the entire function. Otherwise the function is executed and then the result is added to the cache.
     Let's take an example of adding function with memoization,
@@ -1028,7 +1051,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-25. ### What is Hoisting
+24. ### What is Hoisting
 
     Hoisting is a JavaScript mechanism where variables, function declarations and classes are moved to the top of their scope before code execution. Remember that JavaScript only hoists declarations, not initialisation.
     Let's take a simple example of variable hoisting,
@@ -1060,7 +1083,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-26. ### What are classes in ES6
+25. ### What are classes in ES6
 
     In ES6, Javascript classes are primarily syntactic sugar over JavaScript’s existing prototype-based inheritance.
     For example, the prototype based inheritance written in function expression as below,
@@ -1093,7 +1116,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-27. ### What are closures
+26. ### What are closures
 
     A closure is the combination of a function and the lexical environment within which that function was declared. i.e, It is an inner function that has access to the outer or enclosing function’s variables. The closure has three scope chains
 
@@ -1119,13 +1142,13 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-28. ### What are modules
+27. ### What are modules
 
     Modules refer to small units of independent, reusable code and also act as the foundation of many JavaScript design patterns. Most of the JavaScript modules export an object literal, a function, or a constructor
 
     **[⬆ Back to Top](#table-of-contents)**
 
-29. ### Why do you need modules
+28. ### Why do you need modules
 
     Below are the list of benefits using modules in javascript ecosystem
 
@@ -1135,37 +1158,37 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-30. ### What is scope in javascript
+29. ### What is scope in javascript
 
     Scope is the accessibility of variables, functions, and objects in some particular part of your code during runtime. In other words, scope determines the visibility of variables and other resources in areas of your code.
 
     **[⬆ Back to Top](#table-of-contents)**
 
-31. ### What is a service worker
+30. ### What is a service worker
 
     A Service worker is basically a script (JavaScript file) that runs in the background, separate from a web page and provides features that don't need a web page or user interaction. Some of the major features of service workers are Rich offline experiences(offline first web application development), periodic background syncs, push notifications, intercept and handle network requests and programmatically managing a cache of responses.
 
     **[⬆ Back to Top](#table-of-contents)**
 
-32. ### How do you manipulate DOM using a service worker
+31. ### How do you manipulate DOM using a service worker
 
     Service worker can't access the DOM directly. But it can communicate with the pages it controls by responding to messages sent via the `postMessage` interface, and those pages can manipulate the DOM.
 
     **[⬆ Back to Top](#table-of-contents)**
 
-33. ### How do you reuse information across service worker restarts
+32. ### How do you reuse information across service worker restarts
 
     The problem with service worker is that it gets terminated when not in use, and restarted when it's next needed, so you cannot rely on global state within a service worker's `onfetch` and `onmessage` handlers. In this case, service workers will have access to IndexedDB API in order to persist and reuse across restarts.
 
     **[⬆ Back to Top](#table-of-contents)**
 
-34. ### What is IndexedDB
+33. ### What is IndexedDB
 
     IndexedDB is a low-level API for client-side storage of larger amounts of structured data, including files/blobs. This API uses indexes to enable high-performance searches of this data.
 
     **[⬆ Back to Top](#table-of-contents)**
 
-35. ### What is web storage
+34. ### What is web storage
 
     Web storage is an API that provides a mechanism by which browsers can store key/value pairs locally within the user's browser, in a much more intuitive fashion than using cookies. The web storage provides two mechanisms for storing data on the client.
 
@@ -1174,13 +1197,13 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-36. ### What is a post message
+35. ### What is a post message
 
     Post message is a method that enables cross-origin communication between Window objects.(i.e, between a page and a pop-up that it spawned, or between a page and an iframe embedded within it). Generally, scripts on different pages are allowed to access each other if and only if the pages follow same-origin policy(i.e, pages share the same protocol, port number, and host).
 
     **[⬆ Back to Top](#table-of-contents)**
 
-37. ### What is a Cookie
+36. ### What is a Cookie
 
     A cookie is a piece of data that is stored on your computer to be accessed by your browser. Cookies are saved as key/value pairs.
     For example, you can create a cookie named username as below,
@@ -1193,7 +1216,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-38. ### Why do you need a Cookie
+37. ### Why do you need a Cookie
 
     Cookies are used to remember information about the user profile(such as username). It basically involves two steps,
 
@@ -1202,7 +1225,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-39. ### What are the options in a cookie
+38. ### What are the options in a cookie
 
     There are few below options available for a cookie,
 
@@ -1212,7 +1235,7 @@
     document.cookie = "username=John; expires=Sat, 8 Jun 2019 12:00:00 UTC";
     ```
 
-    1. By default, the cookie belongs to a current page. But you can tell the browser what path the cookie belongs to using a path parameter.
+    2. By default, the cookie belongs to a current page. But you can tell the browser what path the cookie belongs to using a path parameter.
 
     ```javascript
     document.cookie = "username=John; path=/services";
@@ -1220,7 +1243,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-40. ### How do you delete a cookie
+39. ### How do you delete a cookie
 
     You can delete a cookie by setting the expiry date as a passed date. You don't need to specify a cookie value in this case.
     For example, you can delete a username cookie in the current page as below.
@@ -1234,7 +1257,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-41. ### What are the differences between cookie, local storage and session storage
+40. ### What are the differences between cookie, local storage and session storage
 
     Below are some of the differences between cookie, local storage and session storage,
 
@@ -1247,13 +1270,13 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-42. ### What is the main difference between localStorage and sessionStorage
+41. ### What is the main difference between localStorage and sessionStorage
 
     LocalStorage is the same as SessionStorage but it persists the data even when the browser is closed and reopened(i.e it has no expiration time) whereas in sessionStorage data gets cleared when the page session ends.
 
     **[⬆ Back to Top](#table-of-contents)**
 
-43. ### How do you access web storage
+42. ### How do you access web storage
 
     The Window object implements the `WindowLocalStorage` and `WindowSessionStorage` objects which has `localStorage`(window.localStorage) and `sessionStorage`(window.sessionStorage) properties respectively. These properties create an instance of the Storage object, through which data items can be set, retrieved and removed for a specific domain and storage type (session or local).
     For example, you can read and write on local storage objects as below
@@ -1265,7 +1288,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-44. ### What are the methods available on session storage
+43. ### What are the methods available on session storage
 
     The session storage provided methods for reading, writing and clearing the session data
 
@@ -1285,7 +1308,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-45. ### What is a storage event and its event handler
+44. ### What is a storage event and its event handler
 
     The StorageEvent is an event that fires when a storage area has been changed in the context of another document. Whereas onstorage property is an EventHandler for processing storage events.
     The syntax would be as below
@@ -1312,13 +1335,13 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-46. ### Why do you need web storage
+45. ### Why do you need web storage
 
     Web storage is more secure, and large amounts of data can be stored locally, without affecting website performance. Also, the information is never transferred to the server. Hence this is a more recommended approach than Cookies.
 
     **[⬆ Back to Top](#table-of-contents)**
 
-47. ### How do you check web storage browser support
+46. ### How do you check web storage browser support
 
     You need to check browser support for localStorage and sessionStorage before using web storage,
 
@@ -1332,7 +1355,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-48. ### How do you check web workers browser support
+47. ### How do you check web workers browser support
 
     You need to check browser support for web workers before using it
 
@@ -1346,7 +1369,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-49. ### Give an example of a web worker
+48. ### Give an example of a web worker
 
     You need to follow below steps to start using web workers for counting example
 
@@ -1366,7 +1389,7 @@
 
     Here postMessage() method is used to post a message back to the HTML page
 
-    1. Create a Web Worker Object: You can create a web worker object by checking for browser support. Let's name this file as web_worker_example.js
+    2. Create a Web Worker Object: You can create a web worker object by checking for browser support. Let's name this file as web_worker_example.js
 
     ```javascript
     if (typeof w == "undefined") {
@@ -1382,14 +1405,14 @@
     };
     ```
 
-    1. Terminate a Web Worker:
+    3. Terminate a Web Worker:
        Web workers will continue to listen for messages (even after the external script is finished) until it is terminated. You can use the terminate() method to terminate listening to the messages.
 
     ```javascript
     w.terminate();
     ```
 
-    1. Reuse the Web Worker: If you set the worker variable to undefined you can reuse the code
+    4. Reuse the Web Worker: If you set the worker variable to undefined you can reuse the code
 
     ```javascript
     w = undefined;
@@ -1397,7 +1420,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-50. ### What are the restrictions of web workers on DOM
+49. ### What are the restrictions of web workers on DOM
 
     WebWorkers don't have access to below javascript objects since they are defined in an external files
 
@@ -1407,7 +1430,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-51. ### What is a promise
+50. ### What is a promise
 
     A promise is an object that may produce a single value some time in the future with either a resolved value or a reason that it’s not resolved(for example, network error). It will be in one of the 3 possible states: fulfilled, rejected, or pending.
 
@@ -1440,13 +1463,13 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-52. ### Why do you need a promise
+51. ### Why do you need a promise
 
     Promises are used to handle asynchronous operations. They provide an alternative approach for callbacks by reducing the callback hell and writing the cleaner code.
 
     **[⬆ Back to Top](#table-of-contents)**
 
-53. ### What are the three states of promise
+52. ### What are the three states of promise
 
     Promises have three states:
 
@@ -1456,7 +1479,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-54. ### What is a callback function
+53. ### What is a callback function
 
     A callback function is a function passed into another function as an argument. This function is invoked inside the outer function to complete an action.
     Let's take a simple example of how to use callback function
@@ -1476,7 +1499,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-55. ### Why do we need callbacks
+54. ### Why do we need callbacks
 
     The callbacks are needed because javascript is an event driven language. That means instead of waiting for a response javascript will keep executing while listening for other events.
     Let's take an example with the first function invoking an API call(simulated by setTimeout) and the next function which logs the message.
@@ -1503,7 +1526,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-56. ### What is a callback hell
+55. ### What is a callback hell
 
     Callback Hell is an anti-pattern with multiple nested callbacks which makes code hard to read and debug when dealing with asynchronous logic. The callback hell looks like below,
 
@@ -1521,13 +1544,13 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-57. ### What are server-sent events
+56. ### What are server-sent events
 
     Server-sent events (SSE) is a server push technology enabling a browser to receive automatic updates from a server via HTTP connection without resorting to polling. These are a one way communications channel - events flow from server to client only. This has been used in Facebook/Twitter updates, stock price updates, news feeds etc.
 
     **[⬆ Back to Top](#table-of-contents)**
 
-58. ### How do you receive server-sent event notifications
+57. ### How do you receive server-sent event notifications
 
     The EventSource object is used to receive server-sent event notifications. For example, you can receive messages from server as below,
 
@@ -1542,7 +1565,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-59. ### How do you check browser support for server-sent events
+58. ### How do you check browser support for server-sent events
 
     You can perform browser support for server-sent events before using it as below,
 
@@ -1556,7 +1579,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-60. ### What are the events available for server sent events
+59. ### What are the events available for server sent events
 
     Below are the list of events available for server sent events
     | Event | Description |
@@ -1567,7 +1590,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-61. ### What are the main rules of promise
+60. ### What are the main rules of promise
 
     A promise must follow a specific set of rules:
 
@@ -1578,7 +1601,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-62. ### What is callback in callback
+61. ### What is callback in callback
 
     You can nest one callback inside in another callback to execute the actions sequentially one by one. This is known as callbacks in callbacks.
 
@@ -1599,7 +1622,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-63. ### What is promise chaining
+62. ### What is promise chaining
 
     The process of executing a sequence of asynchronous tasks one after another using promises is known as Promise chaining. Let's take an example of promise chaining for calculating the final result,
 
@@ -1630,7 +1653,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-64. ### What is promise.all
+63. ### What is promise.all
 
     Promise.all is a promise that takes an array of promises as an input (an iterable), and it gets resolved when all the promises get resolved or any one of them gets rejected. For example, the syntax of promise.all method is below,
 
@@ -1642,7 +1665,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-65. ### What is the purpose of the race method in promise
+64. ### What is the purpose of the race method in promise
 
     Promise.race() method will return the promise instance which is firstly resolved or rejected. Let's take an example of race() method where promise2 is resolved first
 
@@ -1661,19 +1684,19 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-66. ### What is a strict mode in javascript
+65. ### What is a strict mode in javascript
 
     Strict Mode is a new feature in ECMAScript 5 that allows you to place a program, or a function, in a “strict” operating context. This way it prevents certain actions from being taken and throws more exceptions. The literal expression `"use strict";` instructs the browser to use the javascript code in the Strict mode.
 
     **[⬆ Back to Top](#table-of-contents)**
 
-67. ### Why do you need strict mode
+66. ### Why do you need strict mode
 
     Strict mode is useful to write "secure" JavaScript by notifying "bad syntax" into real errors. For example, it eliminates accidentally creating a global variable by throwing an error and also throws an error for assignment to a non-writable property, a getter-only property, a non-existing property, a non-existing variable, or a non-existing object.
 
     **[⬆ Back to Top](#table-of-contents)**
 
-68. ### How do you declare strict mode
+67. ### How do you declare strict mode
 
     The strict mode is declared by adding "use strict"; to the beginning of a script or a function.
     If declared at the beginning of a script, it has global scope.
@@ -1697,7 +1720,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-69. ### What is the purpose of double exclamation
+68. ### What is the purpose of double exclamation
 
     The double exclamation or negation(!!) ensures the resulting type is a boolean. If it was falsey (e.g. 0, null, undefined, etc.), it will be false, otherwise, it will be true.
     For example, you can test IE version using this expression as below,
@@ -1718,7 +1741,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-70. ### What is the purpose of the delete operator
+69. ### What is the purpose of the delete operator
 
     The delete keyword is used to delete the property as well as its value.
 
@@ -1731,7 +1754,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-71. ### What is typeof operator
+70. ### What is typeof operator
 
     You can use the JavaScript typeof operator to find the type of a JavaScript variable. It returns the type of a variable or an expression.
 
@@ -1743,7 +1766,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-72. ### What is undefined property
+71. ### What is undefined property
 
     The undefined property indicates that a variable has not been assigned a value, or declared but not initialized at all. The type of undefined value is undefined too.
 
@@ -1760,7 +1783,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-73. ### What is null value
+72. ### What is null value
 
     The value null represents the intentional absence of any object value. It is one of JavaScript's primitive values. The type of null value is object.
     You can empty the variable by setting the value to null.
@@ -1772,7 +1795,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-74. ### What is the difference between null and undefined
+73. ### What is the difference between null and undefined
 
     Below are the main differences between null and undefined,
 
@@ -1786,7 +1809,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-75. ### What is eval
+74. ### What is eval
 
     The eval() function evaluates JavaScript code represented as a string. The string can be a JavaScript expression, variable, statement, or sequence of statements.
 
@@ -1796,7 +1819,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-76. ### What is the difference between window and document
+75. ### What is the difference between window and document
 
     Below are the main differences between window and document,
 
@@ -1808,7 +1831,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-77. ### How do you access history in javascript
+76. ### How do you access history in javascript
 
     The window.history object contains the browser's history. You can load previous and next URLs in the history using back() and next() methods.
 
@@ -1825,7 +1848,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-78. ### How do you detect caps lock key turned on or not
+77. ### How do you detect caps lock key turned on or not
 
     The `mouseEvent getModifierState()` is used to return a boolean value that indicates whether the specified modifier key is activated or not. The modifiers such as CapsLock, ScrollLock and NumLock are activated when they are clicked, and deactivated when they are clicked again.
 
@@ -1851,7 +1874,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-79. ### What is isNaN
+78. ### What is isNaN
 
     The isNaN() function is used to determine whether a value is an illegal number (Not-a-Number) or not. i.e, This function returns true if the value equates to NaN. Otherwise it returns false.
 
@@ -1862,7 +1885,7 @@
 
     **[⬆ Back to Top](#table-of-contents)**
 
-80. ### What are the differences between undeclared and undefined variables
+79. ### What are the differences between undeclared and undefined variables
 
     Below are the major differences between undeclared(not defined) and undefined variables,
 
@@ -1995,8 +2018,8 @@
 
     **Cons:**
 
-    1. It makes little complex code
-    2. You need to load a polyfill if ES6 is not supported
+    5. It makes little complex code
+    6. You need to load a polyfill if ES6 is not supported
 
     **[⬆ Back to Top](#table-of-contents)**
 
@@ -2339,7 +2362,7 @@
      mainString.includes(subString);
      ```
 
-     1. **Using indexOf:** In an ES5 or older environment, you can use `String.prototype.indexOf` which returns the index of a substring. If the index value is not equal to -1 then it means the substring exists in the main string.
+     2. **Using indexOf:** In an ES5 or older environment, you can use `String.prototype.indexOf` which returns the index of a substring. If the index value is not equal to -1 then it means the substring exists in the main string.
 
      ```javascript
      var mainString = "hello",
@@ -2347,7 +2370,7 @@
      mainString.indexOf(subString) !== -1;
      ```
 
-     1. **Using RegEx:** The advanced solution is using Regular expression's test method(`RegExp.test`), which allows for testing for against regular expressions
+     3. **Using RegEx:** The advanced solution is using Regular expression's test method(`RegExp.test`), which allows for testing for against regular expressions
 
      ```javascript
      var mainString = "hello",
@@ -2425,13 +2448,13 @@
      !("key" in obj);
      ```
 
-     1. **Using hasOwnProperty method:** You can use `hasOwnProperty` to particularly test for properties of the object instance (and not inherited properties)
+     2. **Using hasOwnProperty method:** You can use `hasOwnProperty` to particularly test for properties of the object instance (and not inherited properties)
 
      ```javascript
      obj.hasOwnProperty("key"); // true
      ```
 
-     1. **Using undefined comparison:** If you access a non-existing property from an object, the result is undefined. Let’s compare the properties against undefined to determine the existence of the property.
+     3. **Using undefined comparison:** If you access a non-existing property from an object, the result is undefined. Let’s compare the properties against undefined to determine the existence of the property.
 
      ```javascript
      const user = {
@@ -2474,13 +2497,13 @@
      Object.entries(obj).length === 0 && obj.constructor === Object; // Since date object length is 0, you need to check constructor check as well
      ```
 
-     1. **Using Object keys(ECMA 5+):** You can use object keys length along with constructor type.
+     2. **Using Object keys(ECMA 5+):** You can use object keys length along with constructor type.
 
      ```javascript
      Object.keys(obj).length === 0 && obj.constructor === Object; // Since date object length is 0, you need to check constructor check as well
      ```
 
-     1. **Using for-in with hasOwnProperty(Pre-ECMA 5):** You can use a for-in loop along with hasOwnProperty.
+     3. **Using for-in with hasOwnProperty(Pre-ECMA 5):** You can use a for-in loop along with hasOwnProperty.
 
      ```javascript
      function isEmpty(obj) {
@@ -2543,9 +2566,9 @@
 
      #### Cons
 
-     1. Too verbose
-     2. Imperative
-     3. You might face one-by-off errors
+     3. Too verbose
+     4. Imperative
+     5. You might face one-by-off errors
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -2630,7 +2653,7 @@
      object.key3 = "value3";
      ```
 
-     1. **Using square bracket notation:** This solution is useful when the name of the property is dynamically determined.
+     2. **Using square bracket notation:** This solution is useful when the name of the property is dynamically determined.
 
      ```javascript
      obj["key3"] = "value3";
@@ -2996,7 +3019,7 @@
      document.getElementById("title").style.fontSize = "30px";
      ```
 
-     1. **Using ClassName property:** It is easy to modify element class using className property
+     2. **Using ClassName property:** It is easy to modify element class using className property
 
      ```javascript
      document.getElementById("title").className = "custom-title";
@@ -3220,13 +3243,13 @@
      window.onload = function ...
      ```
 
-     1. **document.onload:**
+     2. **document.onload:**
 
      ```javascript
      document.onload = function ...
      ```
 
-     1. **body onload:**
+     3. **body onload:**
 
      ```javascript
      <body onload="script();">
