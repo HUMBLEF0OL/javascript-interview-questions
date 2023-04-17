@@ -907,7 +907,7 @@
     | ----------------------------------------------------- | --------------------------- |
     | It is been available from the beginning of JavaScript | Introduced as part of ES6   |
     | It has function scope                                 | It has block scope          |
-    | Variables will be hoisted                             | Hoisted but not initialized |
+    | Variables will be hoisted and initialized with default alue                            | Hoisted but not initialized |
 
     Let's take an example to see the difference,
 
